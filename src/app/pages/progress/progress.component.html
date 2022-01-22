@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-body">
+                    <div class="progress m-t-30">
+                        <div class="progress-bar bg-primary active progress-bar-striped" style="height:12px;"
+                            role="progressbar" [style.width]="getProgreso1"> <span class="sr-only">60%
+                                Complete</span> </div>
+                    </div>
+                    <div class="progress m-t-30">
+                        <div class="progress-bar bg-success active progress-bar-striped" style="height:12px;"
+                            role="progressbar" [style.width]="getProgreso2"> <span class="sr-only">60%
+                                Complete</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-incrementador (valorSalida)="progreso1=$event" [valor]="15" [btnClass]="'btn btn-primary'" ></app-incrementador>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-incrementador (valorSalida)="progreso2=$event" [valor]="15" [btnClass]="'btn btn-success'"></app-incrementador>
+            </div>
+        </div>
+    </div>
+
+
+</div>
