@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { UsuarioService } from 'src/app/services/usuario.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private usuarioServices:UsuarioService) { }
   public formSubmited = false
   public registerForm = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
@@ -24,11 +25,21 @@ export class RegisterComponent implements OnInit {
   crearUsuario() {
     this.formSubmited = true
     console.log(this.registerForm.value)
-    if(this.registerForm.valid){
-      console.log('posteando formulario')
-    }else{
-      console.log('Formulario No es correcto..')
+    if(this.registerForm.invalid){
+      return;
     }
+    this.usuarioServices.crearUsuario(this.registerForm.value).subscribe(resp=>{
+      console.log('UsuarioCreado')
+      console.log(resp)
+    },(err)=>{
+      Swal.fire({
+        title: 'Error!',
+        text:  err.error.errors[0].msg,
+        icon: 'error',
+        confirmButtonText: 'Ok!'
+      })
+     
+    } )
   }
   campoNoValido(campo: string): boolean {
     if (this.registerForm.get(campo)?.invalid && this.formSubmited) {
