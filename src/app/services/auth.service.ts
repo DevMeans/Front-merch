@@ -13,7 +13,6 @@ export class AuthService {
   loginService(formData: loginForm) {
     return this.http.post(`${base_url}/auth/login`, formData).pipe(
       tap((resp:any) =>{
-        console.log(resp)
         localStorage.setItem('token',resp.token)
       })
     )
