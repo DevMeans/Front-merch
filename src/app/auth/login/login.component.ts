@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2'
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   public formSubmited = false
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private ngZone: NgZone) { }
   public loginForm = this.fb.group({
     correo: [localStorage.getItem('correo') || '', [Validators.required]],
     password: ['', Validators.required],
@@ -27,7 +28,10 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.removeItem('correo')
       }
+      delay(1000)
       this.router.navigateByUrl('/')
+    
+
     }, (err) => {
       console.log(err)
       Swal.fire({
@@ -41,5 +45,4 @@ export class LoginComponent implements OnInit {
     )
 
   }
-
 }
