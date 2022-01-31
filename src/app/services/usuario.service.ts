@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { registerForm } from '../interfaces/register-form.interface';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url
 
@@ -11,11 +12,11 @@ const base_url = environment.base_url
 })
 export class UsuarioService {
 
-
+  public usuario: any;
   constructor(private http: HttpClient) {
 
   }
-  logout(){
+  logout() {
     localStorage.removeItem('token')
   }
   validarToken() {
@@ -26,6 +27,8 @@ export class UsuarioService {
       }
     }).pipe(
       tap((resp: any) => {
+        const { uid, correo, nombre, img, rol } = resp.usuario
+        this.usuario = new Usuario(uid, correo, nombre, img, rol)
         localStorage.setItem('token', resp.token)
       }),
       map(resp => true),
