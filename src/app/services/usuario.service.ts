@@ -12,31 +12,48 @@ const base_url = environment.base_url
 })
 export class UsuarioService {
 
-  public usuario: any;
+  public usuario: Usuario = new Usuario('', '', '', '', '');
   constructor(private http: HttpClient) {
 
+  }
+  get uid(): string {
+    return this.usuario.uid
+  }
+  get token(): string {
+    return localStorage.getItem('token') || '';
   }
   logout() {
     localStorage.removeItem('token')
   }
   validarToken() {
-    const token = localStorage.getItem('token') || '';
+
     return this.http.get(`${base_url}/auth/login/renovarToken`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
-      tap((resp: any) => {
-        const { uid, correo, nombre, img, rol } = resp.usuario
+      map((resp: any) => {
+        const { uid, correo, nombre, img = '', rol } = resp.usuario
         this.usuario = new Usuario(uid, correo, nombre, img, rol)
         localStorage.setItem('token', resp.token)
+        return true
       }),
-      map(resp => true),
       catchError(err => of(false))
     )
 
   }
+  actualizarPerfil(data: { email: string, nombre: string, rol: string }) {
+    data = {
+      ...data,
+      rol: this.usuario.rol
+    }
 
+    return this.http.put(`${base_url}/usuario/${this.uid}`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    })
+  }
   tokenValidacion() {
     const token = localStorage.getItem('token') || '';
 

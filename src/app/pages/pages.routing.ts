@@ -4,18 +4,20 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PerilComponent } from './peril/peril.component'
 import { AuthGuard } from '../guards/auth.guard';
 
 
 const routes: Routes = [
     {
-        path: 'dashboard', 
+        path: 'dashboard',
         component: PagesComponent,
-        canActivate:[AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             { path: '', component: DashboardComponent },
             { path: 'progress', component: ProgressComponent },
-            {path:'account-settings',component:AccountSettingsComponent}
+            { path: 'account-settings', component: AccountSettingsComponent },
+            { path: 'perfil', component: PerilComponent }
         ]
     },
 ];
