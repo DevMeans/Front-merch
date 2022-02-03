@@ -6,6 +6,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PerilComponent } from './peril/peril.component'
 import { AuthGuard } from '../guards/auth.guard';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
             { path: '', component: DashboardComponent },
             { path: 'progress', component: ProgressComponent },
             { path: 'account-settings', component: AccountSettingsComponent },
-            { path: 'perfil', component: PerilComponent }
+            { path: 'perfil', component: PerilComponent },
+            { path : 'usuarios',component:UsuariosComponent}
         ]
     },
 ];

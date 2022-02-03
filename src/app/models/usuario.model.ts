@@ -8,6 +8,7 @@ export class Usuario {
         public nombre: string,
         public img: string,
         public rol: string,
+        public estado:boolean
 
 
     ) { }

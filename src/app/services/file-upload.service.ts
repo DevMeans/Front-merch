@@ -9,7 +9,7 @@ export class FileUploadService {
   constructor() { }
   async actualizarFoto(
     archivo: File,
-    tipo: 'usuarios' | 'categorias' | 'productos',
+    tipo:'usuarios'|'productos'| 'categorias',
     id: string
 
   ) {

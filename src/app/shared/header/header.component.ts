@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class HeaderComponent implements OnInit {
 
  // public imgUrl = '';
-  public usuario: Usuario = new Usuario('', '', '', '', '')
+  public usuario: Usuario = new Usuario('', '', '', '', '',false)
   constructor(private usuarioService: UsuarioService, private router: Router) {
     //this.imgUrl=this.usuarioService.usuario.imagenUrl;
     this.usuario = usuarioService.usuario

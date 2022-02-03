@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PerilComponent } from './peril/peril.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { PerilComponent } from './peril/peril.component';
     ProgressComponent,
     AccountSettingsComponent,
     PerilComponent,
+    UsuariosComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-12 mb-3">
+        <div class="car-body">
+            <input type="text" name="" id="" placeholder="Buscar Usuario" class="form-control"
+                (keyup)="buscar(txttermino.value)" #txttermino>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">{{totalUsuarios}}</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w-100x">avatar</th>
+                                <th>nombre</th>
+                                <th>correo</th>
+                                <th>rol</th>
+                                <th>estado</th>>
+                                <th class="text-nowrap w-100x">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <td>
+                                    <img (click)="abrirModal(usuario)"  [src]="usuario.img" alt="" class="img-ref img-circle">
+                                </td>
+                                <td>
+                                    {{usuario.nombre}}
+                                </td>
+                                <td>{{usuario.correo}}</td>
+                                <td><select [(ngModel)]="usuario.rol" (change)="cambiarRol(usuario)">
+                                        <option value="ADMIN_ROL">ADMIN_ROL</option>
+                                        <option value="INVITADO_ROL">INVITADO_ROL</option>
+                                        <option value="VENTAS_ROL">VENTAS_ROL</option>
+                                    </select></td>
+                                <td><select [(ngModel)]="usuario.estado" (change)="cambiarEstado(usuario)">
+                                        <option [value]="true">activado</option>
+                                        <option [value]="false">desactivado</option>
+                                    </select></td>
+                                <td class="text-nowrap">
+                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i
+                                            class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a (click)="eliminarUsuario(usuario)" data-toggle="tooltip"
+                                        data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div *ngIf="txttermino.value.length===0">
+                        <button (click)="cambiarPagina(-5)" class="btn btn-primary mr-2">atras</button>
+                        <button (click)="cambiarPagina(+5)" class="btn btn-primary">siguiente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
