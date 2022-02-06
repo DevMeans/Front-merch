@@ -10,6 +10,7 @@ import { ComponentsModule } from '../components/components.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PerilComponent } from './peril/peril.component';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { CategoriaComponent } from './mantenimientos/categoria/categoria.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
     AccountSettingsComponent,
     PerilComponent,
     UsuariosComponent,
+    CategoriaComponent,
   ],
   imports: [
     CommonModule,

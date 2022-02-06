@@ -7,6 +7,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PerilComponent } from './peril/peril.component'
 import { AuthGuard } from '../guards/auth.guard';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { CategoriaComponent } from './mantenimientos/categoria/categoria.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
             { path: 'progress', component: ProgressComponent },
             { path: 'account-settings', component: AccountSettingsComponent },
             { path: 'perfil', component: PerilComponent },
-            { path : 'usuarios',component:UsuariosComponent}
+            { path: 'usuarios', component: UsuariosComponent },
+            { path: 'categorias', component: CategoriaComponent }
         ]
     },
 ];
